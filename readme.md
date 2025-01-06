@@ -1,20 +1,52 @@
 # Database Demo
 
 ## To Do List
-- Can be more than one user with same user name... how to solve
-- In current data model... we are creating education before resume...
-- Try creating education at the same time resume is created... 
-- Service layer to delegate the business logic to another class method...
-- Add experience?
-- delete api
-- logging
-- exception handling
-- application.yml - hardcoded password?
-- authentication/authorization?
-- no junits are there... add junits
-- asynchronous calls
-- reactive... 
-- using virtual threads
+
+### Developer Setup:
+
+1- My SQL setup
+2- pull code base
+
+### Technical improvements:
+
+1- Logging\
+2- Junit\
+3- Authentication\
+4- Authorization\
+5- Hard coded Password\
+6- Reactive way to impelement APIs\
+7- Use Virtual Threads to support async calls\
+8- handle calls async\
+9- Use Hibernate\
+10- USe Prepared STatements/ JDBC\
+11- Exceptions handling\
+12- batching of SQL updates with/without hibernate\
+13- print SQL queries\
+14- Separate beans for web controller, business and DB layer\
+15- Configurations abstraction.\
+
+16- No SQL - Mongo DB/HBase- write a different DAO\
+17- No SQL - Cassandra- write a different DAO\
+
+18- code coverage
+
+---------------------------
+Requirements:
+-Submit a JSON representation of resume and support CRUD operations.
+---------------------------
+Using RDBMS:
+
+Functional
+-
+
+Non Functional
+-
+---------------------------
+Using NO SQL:
+
+Functional
+
+Non Functional
 
 ## Prerequisites and Setup Instructions
 
