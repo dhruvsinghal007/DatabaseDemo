@@ -51,4 +51,9 @@ public class Controller {
     public List<Education> findEducationsOfUser(@PathVariable String userid) {
         return resumeDao.findById(userid).orElseThrow().getEducation();
     }
+
+    @GetMapping("education/{id}")
+    public Education getEducation(@PathVariable int id) {
+        return educationDao.findById(id).orElse(null);
+    }
 }
