@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import com.example.demo.data.Education;
+import com.example.demo.data.EducationRequest;
 import com.example.demo.data.Resume;
+import com.example.demo.data.ResumeRequest;
 import com.example.demo.service.ResumeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,18 +40,13 @@ public class Controller {
     }
 
     @PostMapping("resume")
-    public String addResume(@RequestBody Resume resume) {
+    public String addResume(@RequestBody ResumeRequest resume) {
         return service.addResume(resume);
     }
 
     @PostMapping("education")
-    public int addEducation(@RequestBody Education education) {
+    public String addEducation(@RequestBody EducationRequest education) {
         return service.addEducation(education);
-    }
-
-    @GetMapping("resume/{userid}/education")
-    public List<Education> findEducationsOfUser(@PathVariable String userid) {
-        return service.getResumeEducations(userid);
     }
 
     @GetMapping("education/{id}")

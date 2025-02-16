@@ -4,4 +4,5 @@ import com.example.demo.data.Resume;
 import org.springframework.data.repository.CrudRepository;
 
 public interface ResumeDao extends CrudRepository<Resume, String> {
+    Resume getResume(String name);
 }
