@@ -52,18 +52,29 @@ public class ResumeServiceImpl implements ResumeService {
         resume.setContactNumber(resumeRequest.getContactNumber());
         resume.setEmail(resumeRequest.getEmail());
         resumeDao.save(resume);
-        ResumeEducationMapping mapping = new ResumeEducationMapping();
-        mapping.setResume(resume);
-        for (EducationRequest educationRequest: resumeRequest.getEducationRequests()) {
+        for (EducationRequest educationRequest : resumeRequest.getEducationRequests()) {
             Education education = getEducationFromRequest(educationRequest);
             educationDao.save(education);
-            mapping.setEducation(education);
-            mapping.setId(generateId(resumeRequest.getName() + education.getCollegeName()));
-            mapping.setGrade(educationRequest.getGrade());
-            mapping.setGraduationYear(educationRequest.getGraduationYear());
+            ResumeEducationMapping mapping = getResumeEducationMapping(resumeRequest, educationRequest, resume, education);
             addResumeEducationMapping(mapping);
         }
         return resume.getId();
+    }
+
+    private ResumeEducationMapping getResumeEducationMapping(ResumeRequest resumeRequest, EducationRequest educationRequest, Resume resume,
+                                                             Education education) {
+        ResumeEducationMapping mapping = resumeEducationMappingDao.getResumeMapping(resume, education);
+        if (mapping != null) {
+            logger.debug("Mapping already exists for {} and {}. Updating the information...", resume.getName(), education.getCollegeName());
+        } else {
+            mapping = new ResumeEducationMapping();
+            mapping.setId(generateId(resumeRequest.getName() + education.getCollegeName()));
+            mapping.setResume(resume);
+            mapping.setEducation(education);
+        }
+        mapping.setGrade(educationRequest.getGrade());
+        mapping.setGraduationYear(educationRequest.getGraduationYear());
+        return mapping;
     }
 
     @Override
@@ -98,9 +109,9 @@ public class ResumeServiceImpl implements ResumeService {
     }
 
     @Override
-    public Education getEducation(int id) {
-        logger.info("Fetching education for id {}", id);
-        return educationDao.findById(id).orElseThrow();
+    public Education getEducation(String name) {
+        logger.info("Fetching education for name {}", name);
+        return educationDao.getEducation(name);
     }
 
     @Override

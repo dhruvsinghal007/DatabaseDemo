@@ -17,7 +17,7 @@ public interface ResumeService {
 
     void addResumeEducationMapping(ResumeEducationMapping mapping);
 
-    Education getEducation(int id);
+    Education getEducation(String id);
 
     List<Resume> getAllResumes();
 

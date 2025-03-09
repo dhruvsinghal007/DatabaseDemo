@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public class EducationDaoImpl extends SimpleJpaRepository<Education, Integer> implements EducationDao {
+public class EducationDaoImpl extends SimpleJpaRepository<Education, String> implements EducationDao {
     @PersistenceContext
     private final EntityManager em;
 

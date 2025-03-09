@@ -34,11 +34,6 @@ public class Controller {
         return service.getAllEducations();
     }
 
-    @GetMapping("resume/{userid}")
-    public Resume getResume(@PathVariable String userid) {
-        return service.getResume(userid);
-    }
-
     @PostMapping("resume")
     public String addResume(@RequestBody ResumeRequest resume) {
         return service.addResume(resume);
@@ -47,10 +42,5 @@ public class Controller {
     @PostMapping("education")
     public String addEducation(@RequestBody EducationRequest education) {
         return service.addEducation(education);
-    }
-
-    @GetMapping("education/{id}")
-    public Education getEducation(@PathVariable int id) {
-        return service.getEducation(id);
     }
 }
