@@ -2,21 +2,34 @@ package com.example.demo.data;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class Education {
     @Id
-    private Integer id;
+    private String id;
     private String collegeName;
-    private Integer graduationYear;
-    private Double gpa;
+    private String city;
 
-    public Integer getId() {
+    @OneToMany(mappedBy = "education")
+    private List<ResumeEducationMapping> resumeMappings;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getCollegeName() {
@@ -27,29 +40,12 @@ public class Education {
         this.collegeName = collegeName;
     }
 
-    public Integer getGraduationYear() {
-        return graduationYear;
-    }
-
-    public void setGraduationYear(Integer graduationYear) {
-        this.graduationYear = graduationYear;
-    }
-
-    public Double getGpa() {
-        return gpa;
-    }
-
-    public void setGpa(Double gpa) {
-        this.gpa = gpa;
-    }
-
     @Override
     public String toString() {
         return "Education{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", collegeName='" + collegeName + '\'' +
-                ", graduationYear=" + graduationYear +
-                ", gpa=" + gpa +
+                ", city='" + city + '\'' +
                 '}';
     }
 }

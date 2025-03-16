@@ -9,20 +9,20 @@ import java.util.List;
 @Entity
 public class Resume {
     @Id
-    private String userId;
+    private String id;
     private String name;
     private String email;
     private Long contactNumber;
 
-    @OneToMany
-    private List<Education> education;
+    @OneToMany(mappedBy = "resume")
+    private List<ResumeEducationMapping> educationMappings;
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,22 +49,22 @@ public class Resume {
         this.contactNumber = contactNumber;
     }
 
-    public List<Education> getEducation() {
-        return education;
+    public List<ResumeEducationMapping> getEducationMappings() {
+        return educationMappings;
     }
 
-    public void setEducation(List<Education> education) {
-        this.education = education;
+    public void setEducationMappings(List<ResumeEducationMapping> educationMappings) {
+        this.educationMappings = educationMappings;
     }
 
     @Override
     public String toString() {
         return "Resume{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", contactNumber=" + contactNumber +
-                ", educations=" + education +
+                ", educations=" + educationMappings +
                 '}';
     }
 }

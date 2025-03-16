@@ -1,20 +1,23 @@
 package com.example.demo.service;
 
 import com.example.demo.data.Education;
+import com.example.demo.data.EducationRequest;
 import com.example.demo.data.Resume;
+import com.example.demo.data.ResumeEducationMapping;
+import com.example.demo.data.ResumeRequest;
 
 import java.util.List;
 
 public interface ResumeService {
-    String addResume(Resume resume);
+    String addResume(ResumeRequest resume);
 
     Resume getResume(String userId);
 
-    int addEducation(Education education);
+    String addEducation(EducationRequest education);
 
-    List<Education> getResumeEducations(String userId);
+    void addResumeEducationMapping(ResumeEducationMapping mapping);
 
-    Education getEducation(int id);
+    Education getEducation(String id);
 
     List<Resume> getAllResumes();
 
