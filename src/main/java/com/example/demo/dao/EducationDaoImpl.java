@@ -31,7 +31,7 @@ public class EducationDaoImpl extends SimpleJpaRepository<Education, String> imp
                     .setParameter("collegeName", collegeName)
                     .getSingleResult();
         } catch (Exception e) {
-            logger.error("Error fetching education for {}", collegeName);
+            logger.error("Error fetching education for {}. Error Message: {}", collegeName, e.getMessage());
             return null;
         }
     }

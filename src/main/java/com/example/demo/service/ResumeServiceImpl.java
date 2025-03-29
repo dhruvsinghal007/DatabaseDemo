@@ -8,11 +8,14 @@ import com.example.demo.data.EducationRequest;
 import com.example.demo.data.Resume;
 import com.example.demo.data.ResumeEducationMapping;
 import com.example.demo.data.ResumeRequest;
+import com.example.demo.util.PdfParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,6 +31,9 @@ public class ResumeServiceImpl implements ResumeService {
 
     @Autowired
     private ResumeEducationMappingDao resumeEducationMappingDao;
+
+    @Autowired
+    private ResumeDataMapper resumeDataMapper;
 
     private String generateId(String name) throws IllegalArgumentException {
         logger.info("Generating unique id for {}", name);
@@ -124,5 +130,13 @@ public class ResumeServiceImpl implements ResumeService {
     public List<Education> getAllEducations() {
         logger.info("Fetching all educations");
         return (List<Education>) educationDao.findAll();
+    }
+
+    @Override
+    public String parseAndSaveResume(MultipartFile file) throws IOException {
+        String pdfContent = PdfParser.parsePdf(file);
+        logger.info("Parsed PDF content: {}", pdfContent);
+        ResumeRequest resumeRequest = resumeDataMapper.mapToResumeRequest(pdfContent);
+        return addResume(resumeRequest);
     }
 }
