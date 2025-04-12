@@ -29,7 +29,7 @@ public class ResumeEducationMappingDaoImpl extends SimpleJpaRepository<ResumeEdu
                     .setParameter("education", education)
                     .getSingleResult();
         } catch (Exception e) {
-            logger.error("Error fetching resume education mapping for {} and {}", resume, education);
+            logger.error("Error fetching resume education mapping for {} and {}. Error Message: {}", resume, education, e.getMessage());
             return null;
         }
     }

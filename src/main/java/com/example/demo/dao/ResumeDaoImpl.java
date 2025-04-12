@@ -31,7 +31,7 @@ public class ResumeDaoImpl extends SimpleJpaRepository<Resume, String> implement
                     .setParameter("name", name)
                     .getSingleResult();
         } catch (Exception e) {
-            logger.error("Error fetching resume for {}", name);
+            logger.error("Error fetching resume for {}. Error Message: {}", name, e.getMessage());
             return null;
         }
     }
